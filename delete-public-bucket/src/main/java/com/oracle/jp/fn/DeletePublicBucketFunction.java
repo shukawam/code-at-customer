@@ -12,10 +12,10 @@ import com.oracle.jp.fn.data.AuditLogInput;
 public class DeletePublicBucketFunction {
 
     public boolean handleRequest(AuditLogInput input) {
-        if ("ObjectRead".equals(input.additionalDetails.publicAccessType) ||
-                "ObjectReadWithoutList".equals(input.additionalDetails.publicAccessType)) {
-            String namespaceName = input.additionalDetails.namespace;
-            String bucketName = input.additionalDetails.bucketName;
+        if ("ObjectRead".equals(input.logContent.data.additionalDetails.publicAccessType) ||
+                "ObjectReadWithoutList".equals(input.logContent.data.additionalDetails.publicAccessType)) {
+            String namespaceName = input.logContent.data.additionalDetails.namespace;
+            String bucketName = input.logContent.data.additionalDetails.bucketName;
             return deletePublicBucket(namespaceName, bucketName) == 200 ? true : false;
         } else {
             return false;
