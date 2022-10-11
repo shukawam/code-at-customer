@@ -5,6 +5,7 @@ import com.oracle.bmc.objectstorage.ObjectStorageClient;
 import com.oracle.bmc.objectstorage.requests.DeleteBucketRequest;
 import com.oracle.bmc.objectstorage.responses.DeleteBucketResponse;
 import com.oracle.jp.fn.data.AuditLogInput;
+import com.oracle.jp.fn.data.Data;
 
 import java.util.List;
 
@@ -13,15 +14,23 @@ import java.util.List;
  */
 public class DeletePublicBucketFunction {
 
-    public boolean handleRequest(List<AuditLogInput> inputs) {
-        if (inputs.size() != 1) {
-            return false;
-        }
-        AuditLogInput input = inputs.get(0);
-        if ("ObjectRead".equals(input.logContent.data.additionalDetails.publicAccessType) ||
-                "ObjectReadWithoutList".equals(input.logContent.data.additionalDetails.publicAccessType)) {
-            String namespaceName = input.logContent.data.additionalDetails.namespace;
-            String bucketName = input.logContent.data.additionalDetails.bucketName;
+    public boolean handleRequest(Data data) {
+//        if (inputs.size() != 1) {
+//            return false;
+//        }
+//        AuditLogInput input = inputs.get(0);
+//        if ("ObjectRead".equals(input.logContent.data.additionalDetails.publicAccessType) ||
+//                "ObjectReadWithoutList".equals(input.logContent.data.additionalDetails.publicAccessType)) {
+//            String namespaceName = input.logContent.data.additionalDetails.namespace;
+//            String bucketName = input.logContent.data.additionalDetails.bucketName;
+//            return deletePublicBucket(namespaceName, bucketName) == 200 ? true : false;
+//        } else {
+//            return false;
+//        }
+        if ("ObjectRead".equals(data.additionalDetails.publicAccessType) ||
+                "ObjectReadWithoutList".equals(data.additionalDetails.publicAccessType)) {
+            String namespaceName = data.additionalDetails.namespace;
+            String bucketName = data.additionalDetails.bucketName;
             return deletePublicBucket(namespaceName, bucketName) == 200 ? true : false;
         } else {
             return false;
