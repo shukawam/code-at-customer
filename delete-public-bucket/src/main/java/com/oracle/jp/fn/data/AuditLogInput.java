@@ -4,5 +4,6 @@ package com.oracle.jp.fn.data;
  * @author shukawam
  */
 public class AuditLogInput {
-    public AdditionalDetails additionalDetails;
+    public long datetime;
+    public LogContent logContent;
 }
