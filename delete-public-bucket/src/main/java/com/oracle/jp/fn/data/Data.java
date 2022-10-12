@@ -1,21 +1,11 @@
 package com.oracle.jp.fn.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * @author shukawam
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Data {
     public AdditionalDetails additionalDetails;
-    public String availabilityDomain;
-    public String compartmentId;
-    public String compartmentName;
-    public Object definedTags;
-    public String eventGroupingId;
-    public String eventName;
-    public Object freeformTags;
-    public Object identity;
-    public String message;
-    public Object request;
-    public String resourceId;
-    public Object response;
-    public Object stateChange;
 }
