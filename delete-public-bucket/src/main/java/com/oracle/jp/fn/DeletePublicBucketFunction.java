@@ -7,41 +7,31 @@ import com.oracle.bmc.objectstorage.requests.DeleteBucketRequest;
 import com.oracle.bmc.objectstorage.responses.DeleteBucketResponse;
 import com.oracle.jp.fn.data.AuditLogInput;
 import com.oracle.jp.fn.data.Data;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author shukawam
  */
 public class DeletePublicBucketFunction {
-    private static final Logger logger = LoggerFactory.getLogger(DeletePublicBucketFunction.class);
+    private static final Logger logger = Logger.getLogger(DeletePublicBucketFunction.class.getName());
 
-    public boolean handleRequest(Object data) {
-//        if (inputs.size() != 1) {
-//            return false;
-//        }
-//        AuditLogInput input = inputs.get(0);
-//        if ("ObjectRead".equals(input.logContent.data.additionalDetails.publicAccessType) ||
-//                "ObjectReadWithoutList".equals(input.logContent.data.additionalDetails.publicAccessType)) {
-//            String namespaceName = input.logContent.data.additionalDetails.namespace;
-//            String bucketName = input.logContent.data.additionalDetails.bucketName;
-//            return deletePublicBucket(namespaceName, bucketName) == 200 ? true : false;
-//        } else {
-//            return false;
-//        }
-//        if ("ObjectRead".equals(data.additionalDetails.publicAccessType) ||
-//                "ObjectReadWithoutList".equals(data.additionalDetails.publicAccessType)) {
-//            String namespaceName = data.additionalDetails.namespace;
-//            String bucketName = data.additionalDetails.bucketName;
-//            return deletePublicBucket(namespaceName, bucketName) == 200 ? true : false;
-//        } else {
-//            return false;
-//        }
-        Gson gson = new Gson();
-        logger.info(gson.toJson(data));
-        return true;
+    public boolean handleRequest(List<AuditLogInput> inputs) {
+        if (inputs.size() != 1) {
+            return false;
+        }
+        AuditLogInput input = inputs.get(0);
+        logger.info(String.format(input.data.additionalDetails.publicAccessType);
+        if ("ObjectRead".equals(input.data.additionalDetails.publicAccessType) ||
+                "ObjectReadWithoutList".equals(input.data.additionalDetails.publicAccessType)) {
+            String namespaceName = input.data.additionalDetails.namespace;
+            String bucketName = input.data.additionalDetails.bucketName;
+            return deletePublicBucket(namespaceName, bucketName) == 200 ? true : false;
+        } else {
+            return false;
+        }
     }
 
     private int deletePublicBucket(String namespaceName, String bucketName) {
