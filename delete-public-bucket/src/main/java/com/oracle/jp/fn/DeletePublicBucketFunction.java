@@ -19,6 +19,7 @@ public class DeletePublicBucketFunction {
     private static final Logger logger = Logger.getLogger(DeletePublicBucketFunction.class.getName());
 
     public boolean handleRequest(List<AuditLogInput> inputs) {
+        logger.info(String.format("Log content size: %s", inputs.size()));
         if (inputs.size() != 1) {
             return false;
         }
@@ -27,7 +28,9 @@ public class DeletePublicBucketFunction {
         if ("ObjectRead".equals(input.data.additionalDetails.publicAccessType) ||
                 "ObjectReadWithoutList".equals(input.data.additionalDetails.publicAccessType)) {
             String namespaceName = input.data.additionalDetails.namespace;
+            logger.info(String.format("NamespaceName: %s", namespaceName));
             String bucketName = input.data.additionalDetails.bucketName;
+            logger.info(String.format("BucketName: %s", bucketName));
             boolean result = deletePublicBucket(namespaceName, bucketName) == 200 ? true : false;
             if (result) {
                 logger.info(String.format("Bucket: %s is deleted.", input.data.additionalDetails.bucketName));
