@@ -23,7 +23,7 @@ public class DeletePublicBucketFunction {
             return false;
         }
         AuditLogInput input = inputs.get(0);
-        logger.info(String.format(input.data.additionalDetails.publicAccessType);
+        logger.info(String.format("PublicAccessType: %s", input.data.additionalDetails.publicAccessType));
         if ("ObjectRead".equals(input.data.additionalDetails.publicAccessType) ||
                 "ObjectReadWithoutList".equals(input.data.additionalDetails.publicAccessType)) {
             String namespaceName = input.data.additionalDetails.namespace;
