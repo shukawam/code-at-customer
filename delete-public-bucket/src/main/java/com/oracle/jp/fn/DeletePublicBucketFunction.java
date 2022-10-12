@@ -28,6 +28,12 @@ public class DeletePublicBucketFunction {
                 "ObjectReadWithoutList".equals(input.data.additionalDetails.publicAccessType)) {
             String namespaceName = input.data.additionalDetails.namespace;
             String bucketName = input.data.additionalDetails.bucketName;
+            boolean result = deletePublicBucket(namespaceName, bucketName) == 200 ? true : false;
+            if (result) {
+                logger.info(String.format("Bucket: %s is deleted.", input.data.additionalDetails.bucketName));
+            } else {
+                logger.info(String.format("Bucket: %s is NOT deleted.", input.data.additionalDetails.bucketName));
+            }
             return deletePublicBucket(namespaceName, bucketName) == 200 ? true : false;
         } else {
             return false;

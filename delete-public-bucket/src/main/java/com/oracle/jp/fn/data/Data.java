@@ -17,5 +17,5 @@ public class Data {
     public Object request;
     public String resourceId;
     public Object response;
-    public Object stageChange;
+    public Object stateChange;
 }
