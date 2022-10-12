@@ -37,7 +37,7 @@ public class DeletePublicBucketFunction {
             } else {
                 logger.info(String.format("Bucket: %s is NOT deleted.", input.data.additionalDetails.bucketName));
             }
-            return deletePublicBucket(namespaceName, bucketName) == 200 ? true : false;
+            return result;
         } else {
             return false;
         }
