@@ -15,4 +15,7 @@ public class Data {
     public Object identity;
     public String message;
     public Object request;
+    public String resourceId;
+    public Object response;
+    public Object stageChange;
 }
