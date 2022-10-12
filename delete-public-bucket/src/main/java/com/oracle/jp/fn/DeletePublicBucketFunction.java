@@ -31,7 +31,7 @@ public class DeletePublicBucketFunction {
             logger.info(String.format("NamespaceName: %s", namespaceName));
             String bucketName = input.data.additionalDetails.bucketName;
             logger.info(String.format("BucketName: %s", bucketName));
-            boolean result = deletePublicBucket(namespaceName, bucketName) == 200 ? true : false;
+            boolean result = deletePublicBucket(namespaceName, bucketName) == 204 ? true : false;
             if (result) {
                 logger.info(String.format("Bucket: %s is deleted.", input.data.additionalDetails.bucketName));
             } else {

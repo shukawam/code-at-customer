@@ -19,6 +19,6 @@ javax:
       CountryDS:
         dataSourceClassName: oracle.jdbc.pool.OracleDataSource
         dataSource:
-          url:
-          user:
-          password:
+          url: jdbc:oracle:thin:@shukawamatp_high?TNS_ADMIN=/home/shukawam/work/wallet/Wallet_shukawamatp
+          user: shukawam
+          password: jnfRX&Na0001
