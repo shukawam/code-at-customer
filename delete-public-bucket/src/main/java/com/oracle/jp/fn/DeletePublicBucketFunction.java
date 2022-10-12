@@ -55,6 +55,7 @@ public class DeletePublicBucketFunction {
                 .bucketName(bucketName)
                 .build();
         DeleteBucketResponse deleteBucketResponse = client.deleteBucket(deleteBucketRequest);
+        logger.info(String.format("HTTP Status Code: %s", deleteBucketResponse.get__httpStatusCode__()));
         return deleteBucketResponse.get__httpStatusCode__();
     }
 }
