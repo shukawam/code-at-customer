@@ -23,8 +23,7 @@
 
     <persistence-unit name="CountryPU" transaction-type="JTA">
         <jta-data-source>CountryDS</jta-data-source>
-        <class>com.oracle.jp.country.Pokemon</class>
-        <class>com.oracle.jp.country.PokemonType</class>
+        <class>com.oracle.jp.country.Country</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>
         </properties>
