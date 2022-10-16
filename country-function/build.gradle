@@ -34,11 +34,11 @@ tasks {
       args("-XX:MaximumHeapSizePercent=80")
     }
     dockerBuild {
-        images = ["[REGION].ocir.io/[TENANCY]/[REPO]/$project.name:$project.version"]
+        images = ["nrt.ocir.io/orasejapan/shukawam/fn/country:$project.version"]
     }
 
     dockerBuildNative {
-        images = ["[REGION].ocir.io/[TENANCY]/[REPO]/$project.name-native:$project.version"]
+        images = ["nrt.ocir.io/orasejapan/shukawam/fn/country-native:$project.version"]
     }
 }
 graalvmNative.toolchainDetection = false

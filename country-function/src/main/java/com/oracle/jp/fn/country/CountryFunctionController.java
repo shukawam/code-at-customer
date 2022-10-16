@@ -5,7 +5,7 @@ import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.MediaType;
 import io.micronaut.core.annotation.Introspected;
 
-@Controller("/countryFunction")
+@Controller("/code-at-customer/countryFunction")
 public class CountryFunctionController {
 
     @Produces(MediaType.TEXT_PLAIN)
