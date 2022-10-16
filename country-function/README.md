@@ -6,15 +6,16 @@
 - [Micronaut Guides](https://guides.micronaut.io/index.html)
 ---
 
-## Feature oracle-function-http documentation
-
-- [Micronaut Oracle Function documentation](https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#httpFunctions)
-
-
+- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
 ## Feature oracle-function documentation
 
 - [Micronaut Oracle Function documentation](https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#functions)
 
 - [https://docs.cloud.oracle.com/iaas/Content/Functions/Concepts/functionsoverview.htm](https://docs.cloud.oracle.com/iaas/Content/Functions/Concepts/functionsoverview.htm)
+
+
+## Feature oracle-function-http documentation
+
+- [Micronaut Oracle Function documentation](https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#httpFunctions)
 
 

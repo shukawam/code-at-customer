@@ -1,4 +1,4 @@
-package country.function;
+package com.oracle.jp.fn.country;
 
 import io.micronaut.runtime.EmbeddedApplication;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;

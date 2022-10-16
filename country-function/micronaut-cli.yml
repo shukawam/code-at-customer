@@ -1,6 +1,6 @@
 applicationType: default
-defaultPackage: country.function
+defaultPackage: com.oracle.jp.fn.country
 testFramework: junit
 sourceLanguage: java
-buildTool: maven
-features: [annotation-api, app-name, jackson-databind, java, java-application, junit, maven, oracle-function, oracle-function-http, readme, shade, slf4j-simple, yaml]
+buildTool: gradle
+features: [annotation-api, app-name, gradle, jackson-databind, java, java-application, junit, micronaut-build, oracle-function, oracle-function-http, readme, shade, slf4j-simple, yaml]
