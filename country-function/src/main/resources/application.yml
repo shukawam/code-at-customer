@@ -1,16 +1,10 @@
 micronaut:
   application:
     name: countryFunction
-
 datasources:
   default:
-    url: jdbc:oracle:thin:@shukawamatp_high?TNS_ADMIN=/home/shukawam/work/wallet/Wallet_shukawamatp
-    username: shukawam
-    password: jnfRX&Na0001
     driverClassName: oracle.jdbc.OracleDriver
-    dialect: Oracle
-
-jpa:
-  default:
-    entity-scan:
-      packages: 'com.oracle.jp.fn.country'
+    db-type: oracle
+    schema-generate: CREATE_DROP
+    dialect: ORACLE
+jpa.default.properties.hibernate.hbm2ddl.auto: update
