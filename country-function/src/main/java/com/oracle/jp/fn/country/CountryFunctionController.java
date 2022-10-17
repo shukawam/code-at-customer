@@ -6,7 +6,6 @@ import io.micronaut.http.MediaType;
 import jakarta.inject.Inject;
 
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,12 @@ import java.util.List;
 public class CountryFunctionController {
     @Inject
     private CountryRepository countryRepository;
+
+    @Get(uri = "/health")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String healthCheck() {
+        return "ok";
+    }
 
     @Produces(MediaType.APPLICATION_JSON)
     @Get
@@ -24,8 +29,7 @@ public class CountryFunctionController {
     }
 
     @Produces(MediaType.APPLICATION_JSON)
-    @Get
-    @Path("/code/{countryCode}")
+    @Get(uri = "/code/{countryCode}")
     public Country getCountryByCountryCode(@PathVariable("countryCode") String countryCode) {
         var result = countryRepository.findById(countryCode);
         if (result.isEmpty()) {
