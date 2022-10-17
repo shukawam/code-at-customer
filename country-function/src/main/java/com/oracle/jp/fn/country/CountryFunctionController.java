@@ -3,51 +3,23 @@ package com.oracle.jp.fn.country;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.MediaType;
-import io.micronaut.core.annotation.Introspected;
 
-@Controller("/code-at-customer/countryFunction")
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller("/code-at-customer/country")
 public class CountryFunctionController {
 
-    @Produces(MediaType.TEXT_PLAIN)
+    @Inject
+    private CountryRepository countryRepository;
+
     @Get
-    public String index() {
-        return "Example Response";
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Country> getAllCountry() {
+        List<Country> countryList = new ArrayList<>();
+        countryRepository.findAll().iterator().forEachRemaining(countryList::add);
+        return countryList;
     }
 
-    @Post
-    public SampleReturnMessage postMethod(@Body SampleInputMessage inputMessage){
-      SampleReturnMessage retMessage = new SampleReturnMessage();
-      retMessage.setReturnMessage("Hello " + inputMessage.getName() + ", thank you for sending the message");
-      return retMessage;
-    }
-}
-
-@Introspected
-class SampleInputMessage{
-    private String name;
-
-    public SampleInputMessage() {
-    }
-
-    public SampleInputMessage(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-}
-
-@Introspected
-class SampleReturnMessage{
-    private String returnMessage;
-    public String getReturnMessage() {
-        return returnMessage;
-    }
-    public void setReturnMessage(String returnMessage) {
-        this.returnMessage = returnMessage;
-    }
 }
