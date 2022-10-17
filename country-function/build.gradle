@@ -43,7 +43,7 @@ tasks {
     }
 
     dockerBuildNative {
-        images = ["[nrt.ocir.io/orasejapan/shukawam/fn/country-native:$project.version"]
+        images = ["nrt.ocir.io/orasejapan/shukawam/fn/country-native:$project.version"]
     }
 }
 graalvmNative.toolchainDetection = false
