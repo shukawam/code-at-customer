@@ -3,51 +3,34 @@ package com.oracle.jp.fn.country;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.MediaType;
-import io.micronaut.core.annotation.Introspected;
+import jakarta.inject.Inject;
 
-@Controller("/countryFunction")
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.Path;
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller("/country")
 public class CountryFunctionController {
+    @Inject
+    private CountryRepository countryRepository;
 
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @Get
-    public String index() {
-        return "Example Response";
+    public List<Country> getAllCountry() {
+        List<Country> countryList = new ArrayList<>();
+        countryRepository.findAll().iterator().forEachRemaining(countryList::add);
+        return countryList;
     }
 
-    @Post
-    public SampleReturnMessage postMethod(@Body SampleInputMessage inputMessage){
-      SampleReturnMessage retMessage = new SampleReturnMessage();
-      retMessage.setReturnMessage("Hello " + inputMessage.getName() + ", thank you for sending the message");
-      return retMessage;
-    }
-}
-
-@Introspected
-class SampleInputMessage{
-    private String name;
-
-    public SampleInputMessage() {
-    }
-
-    public SampleInputMessage(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-}
-
-@Introspected
-class SampleReturnMessage{
-    private String returnMessage;
-    public String getReturnMessage() {
-        return returnMessage;
-    }
-    public void setReturnMessage(String returnMessage) {
-        this.returnMessage = returnMessage;
+    @Produces(MediaType.APPLICATION_JSON)
+    @Get
+    @Path("/code/{countryCode}")
+    public Country getCountryByCountryCode(@PathVariable("countryCode") String countryCode) {
+        var result = countryRepository.findById(countryCode);
+        if (result.isEmpty()) {
+            throw new NotFoundException();
+        }
+        return result.get();
     }
 }
