@@ -10,38 +10,29 @@ import jakarta.persistence.*;
 @Access(AccessType.FIELD)
 @NamedQueries({
         @NamedQuery(name = "getAllCountry", query = "SELECT c FROM Country c"),
-        @NamedQuery(name = "getCountryByCountryCode", query = "SELECT c FROM Country c WHERE c.code = :code")
+        @NamedQuery(name = "getCountryById", query = "SELECT c FROM Country c WHERE c.countryId = :countryId")
 })
 public class Country {
     @Id
-    @Column(name = "COUNTRY_CODE")
-    private String code;
-    @Column(name = "ENGLISH_NAME")
-    private String englishName;
-    @Column(name = "JAPANESE_NAME")
-    private String japaneseName;
+    @Column(name = "COUNTRY_ID")
+    private String countryId;
+    @Column(name = "COUNTRY_NAME")
+    private String countryName;
 
-    public String getCode() {
-        return code;
+    public String getCountryId() {
+        return countryId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCode(String countryId) {
+        this.countryId = countryId;
     }
 
-    public String getEnglishName() {
-        return englishName;
+    public String getContryName() {
+        return countryName;
     }
 
-    public void setEnglishName(String englishName) {
-        this.englishName = englishName;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
-    public String getJapaneseName() {
-        return japaneseName;
-    }
-
-    public void setJapaneseName(String japaneseName) {
-        this.japaneseName = japaneseName;
-    }
 }

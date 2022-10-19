@@ -22,14 +22,14 @@ public class CountryResource {
     }
 
     @GET
-    @Path("code/{code}")
+    @Path("countryId/{countryId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Country getCountryByCountryCode(@PathParam("code") String code) {
-        List<Country> countryList =  em.createNamedQuery("getCountryByCountryCode", Country.class)
-                .setParameter("code", code)
+    public Country getCountryById(@PathParam("countryId") String countryId) {
+        List<Country> countryList =  em.createNamedQuery("getCountryById", Country.class)
+                .setParameter("countryId", countryId)
                 .getResultList();
         if (countryList.isEmpty()) {
-            throw new NotFoundException("Unable to fund country with code " + code);
+            throw new NotFoundException("Unable to fund country with id " + countryId);
         }
         return countryList.get(0);
     }
