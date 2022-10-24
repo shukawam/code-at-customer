@@ -46,5 +46,5 @@ outputArtifacts:
     location: country
   - name: country-manifest
     type: BINARY
-    location: app.yaml
+    location: country/app.yaml
 
