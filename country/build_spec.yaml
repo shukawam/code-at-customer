@@ -33,7 +33,7 @@ steps:
     name: "Vulnerability Audit Step"
     configuration:
       buildType: maven
-      pomFilePath: ${OCI_PRIMARY_SOURCE_DIR}/pom.xml
+      pomFilePath: ${OCI_PRIMARY_SOURCE_DIR}/country/pom.xml
       maxPermissibleCvssV2Score: 10.0
       maxPermissibleCvssV3Score: 10.0
     knowledgeBaseId: ocid1.admknowledgebase.oc1.ap-tokyo-1.amaaaaaassl65iqaxlcyg3cy3fakw4wnrktgjjc4o72ylglzndmjxxro5fea
