@@ -60,6 +60,7 @@ steps:
   - type: Command
     name: "Build Docker Image"
     command: |
+      cd country
       export DOCKER_BUILDKIT=1
       export DOCKER_CLI_EXPERIMENTAL=enabled
       docker buildx create --use
