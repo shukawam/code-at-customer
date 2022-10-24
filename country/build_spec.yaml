@@ -54,17 +54,18 @@ steps:
     name: "Build Cache Restore"
     timeoutInSeconds: 140
     command: |
-      cd country
+      cd ${OCI_PRIMARY_SOURCE_DIR}/country
       oci os object get --bucket-name ${BUILD_CACHE_OS_BUCKET_NAME} --file ${BUILD_CACHE_OS_FILE_NAME} --name ${BUILD_CACHE_OS_FILE_NAME} && unzip ${BUILD_CACHE_OS_FILE_NAME}
       echo "Done..."
       
   - type: Command
     name: "Build Docker Image"
     command: |
+      cd ${OCI_PRIMARY_SOURCE_DIR}/country
       export DOCKER_BUILDKIT=1
       export DOCKER_CLI_EXPERIMENTAL=enabled
       docker buildx create --use
-      docker buildx build -t=country --cache-from=type=local,src=./country-cache --cache-to=type=local,dest=./country-cache --load ${OCI_PRIMARY_SOURCE_DIR}
+      docker buildx build -t=country --cache-from=type=local,src=./country-cache --cache-to=type=local,dest=./country-cache --load ${OCI_PRIMARY_SOURCE_DIR}/country
     onFailure:
       - type: Command
         command: |
@@ -75,6 +76,7 @@ steps:
     name: "Build Cache Upload"
     timeoutInSeconds: 300
     command: |
+      ${OCI_PRIMARY_SOURCE_DIR}/country
       rm ${BUILD_CACHE_OS_FILE_NAME} && zip -r ${BUILD_CACHE_OS_FILE_NAME} country-cache/*
       oci os object put --bucket-name ${BUILD_CACHE_OS_BUCKET_NAME} --file ${BUILD_CACHE_OS_FILE_NAME} --force
 
