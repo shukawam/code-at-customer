@@ -6,6 +6,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author shukawam
@@ -17,12 +18,12 @@ public class CountryResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Country> getAllCountry() {
+    public List<Country> getCountry() {
         return em.createNamedQuery("getAllCountry", Country.class).getResultList();
     }
 
     @GET
-    @Path("countryId/{countryId}")
+    @Path("id/{countryId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Country getCountryById(@PathParam("countryId") String countryId) {
         List<Country> countryList =  em.createNamedQuery("getCountryById", Country.class)

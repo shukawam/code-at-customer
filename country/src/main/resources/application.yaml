@@ -6,7 +6,7 @@ server:
 # Change the following to true to enable the optional MicroProfile Metrics REST.request metrics
 metrics:
   rest-request:
-    enabled: false
+    enabled: true
 
 # Application properties. This is the default greeting
 app:
@@ -22,3 +22,8 @@ javax:
           url:
           user:
           password:
+
+tracing:
+  service: "country"
+  data-upload-endpoint:
+  private-data-key:

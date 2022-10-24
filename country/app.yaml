@@ -5,7 +5,7 @@ metadata:
   labels:
     app: country
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: country
   ports:
@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: country
-          image: nrt.ocir.io/orasejapan/shukawam/country:1.0
+          image: ${DOCKER_SERVER}/${REPOSITORY}/country:${TAG}
           imagePullPolicy: IfNotPresent
           ports:
             - name: api
@@ -51,6 +51,16 @@ spec:
                 secretKeyRef:
                   key: password
                   name: atp-secret
+            - name: tracing.data-upload-endpoint
+              valueFrom:
+                secretKeyRef:
+                  key: endpoint
+                  name: apm-secret
+            - name: tracing.private-data-key
+              valueFrom:
+                secretKeyRef:
+                  key: privateKey
+                  name: apm-secret
           readinessProbe:
             httpGet:
               path: /health/ready
@@ -72,22 +82,3 @@ spec:
             name: wallet
       imagePullSecrets:
         - name: ocir-secret
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: country
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-spec:
-  rules:
-    - host: code-at-customer.shukawam.com
-      http:
-        paths:
-          - backend:
-              service:
-                name: country
-                port:
-                  number: 8080
-            path: /
-            pathType: Prefix
