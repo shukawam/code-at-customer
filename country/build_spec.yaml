@@ -54,13 +54,13 @@ steps:
     name: "Build Cache Restore"
     timeoutInSeconds: 140
     command: |
+      cd country
       oci os object get --bucket-name ${BUILD_CACHE_OS_BUCKET_NAME} --file ${BUILD_CACHE_OS_FILE_NAME} --name ${BUILD_CACHE_OS_FILE_NAME} && unzip ${BUILD_CACHE_OS_FILE_NAME}
       echo "Done..."
       
   - type: Command
     name: "Build Docker Image"
     command: |
-      cd country
       export DOCKER_BUILDKIT=1
       export DOCKER_CLI_EXPERIMENTAL=enabled
       docker buildx create --use
