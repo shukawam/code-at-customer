@@ -1,9 +1,9 @@
 package com.oracle.jp.country;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
 import java.util.List;
 import java.util.Optional;

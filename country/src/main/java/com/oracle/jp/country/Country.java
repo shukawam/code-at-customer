@@ -1,6 +1,7 @@
 package com.oracle.jp.country;
 
-import jakarta.persistence.*;
+import com.oracle.apm.agent.integration.helidon.ApmTracerProvider;
+import javax.persistence.*;
 
 /**
  * @author shukawam
