@@ -7,18 +7,22 @@ import javax.ws.rs.core.MediaType;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 /**
  * @author shukawam
  */
 @Path("country")
 public class CountryResource {
+    private static final Logger logger = Logger.getLogger(CountryResource.class.getName());
+
     @PersistenceContext(unitName = "CountryPU")
     private EntityManager em;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Country> getCountry() {
+        logger.info("Inside ContryResource#getCountry");
         return em.createNamedQuery("getAllCountry", Country.class).getResultList();
     }
 
@@ -26,6 +30,7 @@ public class CountryResource {
     @Path("id/{countryId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Country getCountryById(@PathParam("countryId") String countryId) {
+        logger.info("Inside CountryResource#getCountryById")
         List<Country> countryList =  em.createNamedQuery("getCountryById", Country.class)
                 .setParameter("countryId", countryId)
                 .getResultList();
