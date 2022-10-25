@@ -6,7 +6,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 /**
@@ -35,6 +34,7 @@ public class CountryResource {
                 .setParameter("countryId", countryId)
                 .getResultList();
         if (countryList.isEmpty()) {
+            logger.warning("Unable to fund country with id " + countryId);
             throw new NotFoundException("Unable to fund country with id " + countryId);
         }
         return countryList.get(0);
