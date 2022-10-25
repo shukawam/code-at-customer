@@ -30,7 +30,7 @@ public class CountryResource {
     @Path("id/{countryId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Country getCountryById(@PathParam("countryId") String countryId) {
-        logger.info("Inside CountryResource#getCountryById")
+        logger.info("Inside CountryResource#getCountryById");
         List<Country> countryList =  em.createNamedQuery("getCountryById", Country.class)
                 .setParameter("countryId", countryId)
                 .getResultList();
