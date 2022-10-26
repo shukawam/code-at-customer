@@ -1,53 +1,54 @@
 package com.oracle.jp.fn.country;
 
-import io.micronaut.http.annotation.*;
-import io.micronaut.http.annotation.Produces;
+import com.google.gson.Gson;
 import io.micronaut.http.MediaType;
-import io.micronaut.core.annotation.Introspected;
+import io.micronaut.http.annotation.*;
 
-@Controller("/countryMn")
+import javax.inject.Inject;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.Arrays;
+import java.util.List;
+
+@Controller("/code-at-customer")
 public class CountryMnController {
 
-    @Produces(MediaType.TEXT_PLAIN)
-    @Get
-    public String index() {
-        return "Example Response";
+    private final OrdsConfig ordsConfig;
+
+    @Inject
+    public CountryMnController(OrdsConfig ordsConfig) {
+        this.ordsConfig = ordsConfig;
+
     }
 
-    @Post
-    public SampleReturnMessage postMethod(@Body SampleInputMessage inputMessage){
-      SampleReturnMessage retMessage = new SampleReturnMessage();
-      retMessage.setReturnMessage("Hello " + inputMessage.getName() + ", thank you for sending the message");
-      return retMessage;
-    }
-}
-
-@Introspected
-class SampleInputMessage{
-    private String name;
-
-    public SampleInputMessage() {
-    }
-
-    public SampleInputMessage(String name) {
-        this.name = name;
+    @Get("/country")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Country> getAllCountry() throws InterruptedException, IOException {
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(String.format("%s/country", ordsConfig.getEndpoint())))
+                .GET()
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        Gson gson = new Gson();
+        List<Country> countryList = Arrays.asList(gson.fromJson(response.body(), Country[].class));
+        return countryList;
     }
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-}
-
-@Introspected
-class SampleReturnMessage{
-    private String returnMessage;
-    public String getReturnMessage() {
-        return returnMessage;
-    }
-    public void setReturnMessage(String returnMessage) {
-        this.returnMessage = returnMessage;
+    @Get("/country/id/{countryId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Country getCountryByCountryId(String countryId) throws InterruptedException, IOException  {
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(String.format("%s/country/id/%s", ordsConfig.getEndpoint(), countryId)))
+                .GET()
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        Gson gson = new Gson();
+        Country country = gson.fromJson(response.body(), Country.class);
+        return country;
     }
 }

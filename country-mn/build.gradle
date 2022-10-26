@@ -19,7 +19,7 @@ dependencies {
     implementation("jakarta.annotation:jakarta.annotation-api")
     runtimeOnly("org.slf4j:slf4j-simple")
     implementation("io.micronaut:micronaut-validation")
-
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.10'
 }
 
 

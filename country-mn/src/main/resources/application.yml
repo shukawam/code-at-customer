@@ -3,4 +3,4 @@ oci:
     profile: DEFAULT
 
 ords:
-  endpoint: ${ords.endpoint}
+  endpoint: ${ords.endpoint:}
