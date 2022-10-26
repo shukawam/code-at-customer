@@ -1,13 +1,6 @@
-datasources:
-  default:
-    ocid: ocid1.autonomousdatabase.oc1.ap-tokyo-1.anxhiljrssl65iqal3cxmovy6yrnqjtxfxkspe72nykzfzro2my3f3bwc4oa
-    username: ${countryDS.user:}
-    password: ${counrtyDS.password:}
-    walletPassword: ${countryDS.walletPassword:}
-    dialect: ORACLE
-    
-jpa:
-  default:
-    properties:
-      hibernate:
-        show_sql: true
+oci:
+  config:
+    profile: DEFAULT
+
+ords:
+  endpoint: ${ords.endpoint}

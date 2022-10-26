@@ -3,37 +3,51 @@ package com.oracle.jp.fn.country;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.MediaType;
+import io.micronaut.core.annotation.Introspected;
 
-import javax.inject.Inject;
-import javax.ws.rs.NotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.logging.Logger;
-
-@Controller("/code-at-customer/country")
+@Controller("/countryMn")
 public class CountryMnController {
-    private static final Logger logger = Logger.getLogger(CountryMnController.class.getName());
 
-    @Inject
-    CountryRepository countryRepository;
-
+    @Produces(MediaType.TEXT_PLAIN)
     @Get
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Country> getAllCountry() {
-        List<Country> countryList = new ArrayList<>();
-        countryRepository.findAll().iterator().forEachRemaining(countryList::add);
-        return countryList;
+    public String index() {
+        return "Example Response";
     }
 
-    @Get("/id/{countryId}")
-    public Country getCountryByCountryId(String countryId) {
-        Optional<Country> countryOptional = countryRepository.findById(countryId);
-        if (countryOptional.isEmpty()) {
-            logger.warning("Unable to found country by id: " + countryId);
-            throw new NotFoundException();
-        }
-        return countryOptional.get();
+    @Post
+    public SampleReturnMessage postMethod(@Body SampleInputMessage inputMessage){
+      SampleReturnMessage retMessage = new SampleReturnMessage();
+      retMessage.setReturnMessage("Hello " + inputMessage.getName() + ", thank you for sending the message");
+      return retMessage;
+    }
+}
+
+@Introspected
+class SampleInputMessage{
+    private String name;
+
+    public SampleInputMessage() {
     }
 
+    public SampleInputMessage(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+@Introspected
+class SampleReturnMessage{
+    private String returnMessage;
+    public String getReturnMessage() {
+        return returnMessage;
+    }
+    public void setReturnMessage(String returnMessage) {
+        this.returnMessage = returnMessage;
+    }
 }

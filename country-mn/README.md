@@ -7,18 +7,9 @@
 ---
 
 - [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
-## Feature oracle-cloud-sdk documentation
+## Feature http-client documentation
 
-- [Micronaut Oracle Cloud SDK documentation](https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/)
-
-- [https://docs.cloud.oracle.com/en-us/iaas/Content/API/SDKDocs/javasdk.htm](https://docs.cloud.oracle.com/en-us/iaas/Content/API/SDKDocs/javasdk.htm)
-
-
-## Feature oracle-cloud-atp documentation
-
-- [Micronaut Oracle Cloud Autonomous Transaction Processing (ATP) documentation](https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#_micronaut_oraclecloud_atp)
-
-- [https://www.oracle.com/autonomous-database/autonomous-transaction-processing/](https://www.oracle.com/autonomous-database/autonomous-transaction-processing/)
+- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
 
 ## Feature oracle-function-http documentation
@@ -40,13 +31,10 @@
 - [https://docs.oracle.com/en-us/iaas/Content/KeyManagement/home.htm](https://docs.oracle.com/en-us/iaas/Content/KeyManagement/home.htm)
 
 
-## Feature jdbc-hikari documentation
+## Feature oracle-cloud-sdk documentation
 
-- [Micronaut Hikari JDBC Connection Pool documentation](https://micronaut-projects.github.io/micronaut-sql/latest/guide/index.html#jdbc)
+- [Micronaut Oracle Cloud SDK documentation](https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/)
 
-
-## Feature test-resources documentation
-
-- [Micronaut Test Resources documentation](https://micronaut-projects.github.io/micronaut-test-resources/latest/guide/)
+- [https://docs.cloud.oracle.com/en-us/iaas/Content/API/SDKDocs/javasdk.htm](https://docs.cloud.oracle.com/en-us/iaas/Content/API/SDKDocs/javasdk.htm)
 
 
