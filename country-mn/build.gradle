@@ -3,7 +3,7 @@ plugins {
     id("io.micronaut.application") version "3.6.2"
 }
 
-version = "0.1"
+version = "1.0.0"
 group = "com.oracle.jp.fn.country"
 
 repositories {
@@ -36,11 +36,11 @@ tasks {
       args("-XX:MaximumHeapSizePercent=80")
     }
     dockerBuild {
-        images = ["[REGION].ocir.io/[TENANCY]/[REPO]/$project.name:$project.version"]
+        images = ["nrt.ocir.io/orasejapan/shukawam/fn/$project.name:$project.version"]
     }
 
     dockerBuildNative {
-        images = ["[REGION].ocir.io/[TENANCY]/[REPO]/$project.name-native:$project.version"]
+        images = ["nrt.ocir.io/orasejapan/shukawam/fn/$project.name-native:$project.version"]
     }
 }
 graalvmNative.toolchainDetection = false
