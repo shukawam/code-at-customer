@@ -4,7 +4,7 @@ plugins {
     id("io.micronaut.test-resources") version "3.6.2"
 }
 
-version = "0.1"
+version = "0.0.1"
 group = "com.oracle.jp.fn.country"
 
 repositories {
@@ -15,17 +15,13 @@ dependencies {
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
     implementation("io.micronaut:micronaut-jackson-databind")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-atp")
+    implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-sdk")
+    implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-vault")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("jakarta.annotation:jakarta.annotation-api")
-    runtimeOnly("com.oracle.database.jdbc:ojdbc8")
     runtimeOnly("org.slf4j:slf4j-simple")
     implementation("io.micronaut:micronaut-validation")
-    implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-sdk:2.41.1")
-    implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-common:2.2.1")
-    implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-function-http")
-    implementation platform("com.oracle.database.jdbc:ojdbc-bom:21.1.0.0")
-    runtimeOnly("io.micronaut.oraclecloud:micronaut-oraclecloud-atp")
-    implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-vault")
 
     testImplementation("io.micronaut:micronaut-http-client")
 
@@ -36,8 +32,8 @@ application {
     mainClass.set("com.oracle.jp.fn.country.Application")
 }
 java {
-    sourceCompatibility = JavaVersion.toVersion("11")
-    targetCompatibility = JavaVersion.toVersion("11")
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
 }
 
 tasks {
@@ -45,11 +41,11 @@ tasks {
       args("-XX:MaximumHeapSizePercent=80")
     }
     dockerBuild {
-        images = ["nrt.ocir.io/orasejapan/shukawam/fn/country:$project.version"]
+        images = ["nrt.ocir.io/orasejapan/shukawam/fn/$project.name:$project.version"]
     }
 
     dockerBuildNative {
-        images = ["nrt.ocir.io/orasejapan/shukawam/fn/country-native:$project.version"]
+        images = ["nrt.ocir.io/orasejapan/shukawam/fn/$project.name-native:$project.version"]
     }
 }
 graalvmNative.toolchainDetection = false

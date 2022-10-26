@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.oracle.jp.fn.country
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [annotation-api, app-name, data, data-jpa, gradle, jackson-databind, java, java-application, jdbc-hikari, junit, micronaut-build, oracle-cloud-atp, oracle-cloud-sdk, oracle-cloud-vault, oracle-function, oracle-function-http, readme, shade, slf4j-simple, test-resources, yaml]

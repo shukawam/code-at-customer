@@ -8,7 +8,7 @@ import jakarta.inject.Inject;
 import static org.junit.jupiter.api.Assertions.*;
 
 @MicronautTest
-public class CountryFunctionControllerTest {
+public class CountryMnControllerTest {
 
     @Inject
     @Client("/")
@@ -16,6 +16,6 @@ public class CountryFunctionControllerTest {
 
     @Test
     public void testIndex() throws Exception {
-        assertEquals(HttpStatus.OK, client.toBlocking().exchange("/countryFunction").status());
+        assertEquals(HttpStatus.OK, client.toBlocking().exchange("/countryMn").status());
     }
 }
