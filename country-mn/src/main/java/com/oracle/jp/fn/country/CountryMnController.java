@@ -3,9 +3,8 @@ package com.oracle.jp.fn.country;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.MediaType;
-import io.micronaut.core.annotation.Introspected;
-import jakarta.inject.Inject;
 
+import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +14,9 @@ import java.util.logging.Logger;
 @Controller("/code-at-customer/country")
 public class CountryMnController {
     private static final Logger logger = Logger.getLogger(CountryMnController.class.getName());
-    private final CountryRepository countryRepository;
 
     @Inject
-    public CountryMnController(CountryRepository countryRepository) {
-        this.countryRepository = countryRepository;
-    }
+    CountryRepository countryRepository;
 
     @Get
     @Produces(MediaType.APPLICATION_JSON)
